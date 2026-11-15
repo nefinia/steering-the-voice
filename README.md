@@ -162,8 +162,8 @@ One NVIDIA L40S on Modal, about 0.4 GPU hours for the whole run, paid from the a
 
 ## Artifacts
 
-- **HF dataset collection:** {{HF_DATA}}
-- **HF models collection (steering vectors):** {{HF_VECS}}
+- **HF dataset collection:** https://huggingface.co/collections/nefinia/steering-the-voice-data-6afa430b3ce7e09c3379de6d (dataset `nefinia/steering-the-voice-tiny-aya`)
+- **HF models collection (steering vectors):** https://huggingface.co/collections/nefinia/steering-the-voice-vectors-6afa430c9600a98c9d0e2800 (`nefinia/steering-the-voice-tiny-aya-vectors`)
 - **GitHub repo:** this repository.
 
 ## Documentation and reproduction
