@@ -1,0 +1,34 @@
+# Runs the steering experiment on Modal and brings the answers back into results/.
+# Start it from the Actions tab (Run workflow).
+# Needs two repository secrets: MODAL_TOKEN_ID and MODAL_TOKEN_SECRET (a Modal API token).
+
+name: run
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  steer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
+      MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install modal
+      - run: modal run steer_modal.py
+      - name: Bring the answers into the repo
+        run: |
+          modal volume get steering-results / results --force
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add results
+          git commit -m "Steered answers" || echo "nothing new"
+          git pull --rebase && git push

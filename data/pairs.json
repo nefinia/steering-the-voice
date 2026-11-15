@@ -1,0 +1,683 @@
+{
+ "levels": {
+  "cc": "concrete + concrete",
+  "ca": "concrete + abstract",
+  "aa": "abstract + abstract"
+ },
+ "instructions": {
+  "en": {
+   "welcome": "You will see two ideas. Write how you would get from one to the other. Any connection works, short or long. There is no wrong answer.",
+   "question": "How do you get from one to the other?"
+  },
+  "fr": {
+   "welcome": "Vous verrez deux idées. Écrivez comment vous iriez de l'une à l'autre. Tout lien fonctionne, court ou long. Il n'y a pas de mauvaise réponse.",
+   "question": "Comment passez-vous de l'une à l'autre ?"
+  },
+  "es": {
+   "welcome": "Verás dos ideas. Escribe cómo irías de una a la otra. Cualquier conexión vale, corta o larga. No hay respuestas incorrectas.",
+   "question": "¿Cómo llegas de una a la otra?"
+  },
+  "it": {
+   "welcome": "Vedrai due idee. Scrivi come andresti dall'una all'altra. Qualsiasi collegamento va bene, breve o lungo. Non ci sono risposte sbagliate.",
+   "question": "Come arrivi dall'una all'altra?"
+  },
+  "de": {
+   "welcome": "Du siehst zwei Ideen. Schreib, wie du von der einen zur anderen kommst. Jede Verbindung zählt, kurz oder lang. Es gibt keine falsche Antwort.",
+   "question": "Wie kommst du von der einen zur anderen?"
+  }
+ },
+ "pairs": [
+  {
+   "id": "c1",
+   "set": "core",
+   "level": "cc",
+   "a": {
+    "en": "a bee",
+    "fr": "une abeille",
+    "es": "una abeja",
+    "it": "un'ape",
+    "de": "eine Biene"
+   },
+   "b": {
+    "en": "a mirror",
+    "fr": "un miroir",
+    "es": "un espejo",
+    "it": "uno specchio",
+    "de": "ein Spiegel"
+   },
+   "a_key": "bee",
+   "b_key": "mirror"
+  },
+  {
+   "id": "c2",
+   "set": "core",
+   "level": "cc",
+   "a": {
+    "en": "salt",
+    "fr": "le sel",
+    "es": "la sal",
+    "it": "il sale",
+    "de": "Salz"
+   },
+   "b": {
+    "en": "a clock",
+    "fr": "une horloge",
+    "es": "un reloj",
+    "it": "un orologio",
+    "de": "eine Uhr"
+   },
+   "a_key": "salt",
+   "b_key": "clock"
+  },
+  {
+   "id": "c3",
+   "set": "core",
+   "level": "ca",
+   "a": {
+    "en": "a river",
+    "fr": "une rivière",
+    "es": "un río",
+    "it": "un fiume",
+    "de": "ein Fluss"
+   },
+   "b": {
+    "en": "a secret",
+    "fr": "un secret",
+    "es": "un secreto",
+    "it": "un segreto",
+    "de": "ein Geheimnis"
+   },
+   "a_key": "river",
+   "b_key": "secret"
+  },
+  {
+   "id": "c4",
+   "set": "core",
+   "level": "ca",
+   "a": {
+    "en": "a spider",
+    "fr": "une araignée",
+    "es": "una araña",
+    "it": "un ragno",
+    "de": "eine Spinne"
+   },
+   "b": {
+    "en": "a melody",
+    "fr": "une mélodie",
+    "es": "una melodía",
+    "it": "una melodia",
+    "de": "eine Melodie"
+   },
+   "a_key": "spider",
+   "b_key": "melody"
+  },
+  {
+   "id": "c5",
+   "set": "core",
+   "level": "aa",
+   "a": {
+    "en": "forgetting",
+    "fr": "l'oubli",
+    "es": "el olvido",
+    "it": "dimenticare",
+    "de": "das Vergessen"
+   },
+   "b": {
+    "en": "a festival",
+    "fr": "une fête",
+    "es": "una fiesta",
+    "it": "una festa",
+    "de": "ein Fest"
+   },
+   "a_key": "forgetting",
+   "b_key": "festival"
+  },
+  {
+   "id": "c6",
+   "set": "core",
+   "level": "aa",
+   "a": {
+    "en": "distance",
+    "fr": "la distance",
+    "es": "la distancia",
+    "it": "la distanza",
+    "de": "die Entfernung"
+   },
+   "b": {
+    "en": "a habit",
+    "fr": "une habitude",
+    "es": "una costumbre",
+    "it": "un'abitudine",
+    "de": "eine Gewohnheit"
+   },
+   "a_key": "distance",
+   "b_key": "habit"
+  },
+  {
+   "id": "p01",
+   "set": "open",
+   "level": "cc",
+   "a": {
+    "en": "a snail",
+    "fr": "un escargot",
+    "es": "un caracol",
+    "it": "una chiocciola",
+    "de": "eine Schnecke"
+   },
+   "b": {
+    "en": "a map",
+    "fr": "une carte",
+    "es": "un mapa",
+    "it": "una mappa",
+    "de": "eine Landkarte"
+   },
+   "a_key": "snail",
+   "b_key": "map"
+  },
+  {
+   "id": "p02",
+   "set": "open",
+   "level": "cc",
+   "a": {
+    "en": "a needle",
+    "fr": "une aiguille",
+    "es": "una aguja",
+    "it": "un ago",
+    "de": "eine Nadel"
+   },
+   "b": {
+    "en": "a cloud",
+    "fr": "un nuage",
+    "es": "una nube",
+    "it": "una nuvola",
+    "de": "eine Wolke"
+   },
+   "a_key": "needle",
+   "b_key": "cloud"
+  },
+  {
+   "id": "p03",
+   "set": "open",
+   "level": "cc",
+   "a": {
+    "en": "an egg",
+    "fr": "un œuf",
+    "es": "un huevo",
+    "it": "un uovo",
+    "de": "ein Ei"
+   },
+   "b": {
+    "en": "a door",
+    "fr": "une porte",
+    "es": "una puerta",
+    "it": "una porta",
+    "de": "eine Tür"
+   },
+   "a_key": "egg",
+   "b_key": "door"
+  },
+  {
+   "id": "p04",
+   "set": "open",
+   "level": "cc",
+   "a": {
+    "en": "honey",
+    "fr": "le miel",
+    "es": "la miel",
+    "it": "il miele",
+    "de": "Honig"
+   },
+   "b": {
+    "en": "a knife",
+    "fr": "un couteau",
+    "es": "un cuchillo",
+    "it": "un coltello",
+    "de": "ein Messer"
+   },
+   "a_key": "honey",
+   "b_key": "knife"
+  },
+  {
+   "id": "p05",
+   "set": "open",
+   "level": "cc",
+   "a": {
+    "en": "a stone",
+    "fr": "une pierre",
+    "es": "una piedra",
+    "it": "una pietra",
+    "de": "ein Stein"
+   },
+   "b": {
+    "en": "a letter",
+    "fr": "une lettre",
+    "es": "una carta",
+    "it": "una lettera",
+    "de": "ein Brief"
+   },
+   "a_key": "stone",
+   "b_key": "letter"
+  },
+  {
+   "id": "p06",
+   "set": "open",
+   "level": "cc",
+   "a": {
+    "en": "a rope",
+    "fr": "une corde",
+    "es": "una cuerda",
+    "it": "una corda",
+    "de": "ein Seil"
+   },
+   "b": {
+    "en": "the moon",
+    "fr": "la lune",
+    "es": "la luna",
+    "it": "la luna",
+    "de": "der Mond"
+   },
+   "a_key": "rope",
+   "b_key": "moon"
+  },
+  {
+   "id": "p07",
+   "set": "open",
+   "level": "cc",
+   "a": {
+    "en": "a fish",
+    "fr": "un poisson",
+    "es": "un pez",
+    "it": "un pesce",
+    "de": "ein Fisch"
+   },
+   "b": {
+    "en": "a basket",
+    "fr": "un panier",
+    "es": "una cesta",
+    "it": "un cesto",
+    "de": "ein Korb"
+   },
+   "a_key": "fish",
+   "b_key": "basket"
+  },
+  {
+   "id": "p08",
+   "set": "open",
+   "level": "cc",
+   "a": {
+    "en": "a tooth",
+    "fr": "une dent",
+    "es": "un diente",
+    "it": "un dente",
+    "de": "ein Zahn"
+   },
+   "b": {
+    "en": "rain",
+    "fr": "la pluie",
+    "es": "la lluvia",
+    "it": "la pioggia",
+    "de": "Regen"
+   },
+   "a_key": "tooth",
+   "b_key": "rain"
+  },
+  {
+   "id": "p09",
+   "set": "open",
+   "level": "ca",
+   "a": {
+    "en": "a seed",
+    "fr": "une graine",
+    "es": "una semilla",
+    "it": "un seme",
+    "de": "ein Samen"
+   },
+   "b": {
+    "en": "trust",
+    "fr": "la confiance",
+    "es": "la confianza",
+    "it": "la fiducia",
+    "de": "Vertrauen"
+   },
+   "a_key": "seed",
+   "b_key": "trust"
+  },
+  {
+   "id": "p10",
+   "set": "open",
+   "level": "ca",
+   "a": {
+    "en": "bread",
+    "fr": "le pain",
+    "es": "el pan",
+    "it": "il pane",
+    "de": "Brot"
+   },
+   "b": {
+    "en": "luck",
+    "fr": "la chance",
+    "es": "la suerte",
+    "it": "la fortuna",
+    "de": "Glück"
+   },
+   "a_key": "bread",
+   "b_key": "luck"
+  },
+  {
+   "id": "p11",
+   "set": "open",
+   "level": "ca",
+   "a": {
+    "en": "sand",
+    "fr": "le sable",
+    "es": "la arena",
+    "it": "la sabbia",
+    "de": "Sand"
+   },
+   "b": {
+    "en": "waiting",
+    "fr": "l'attente",
+    "es": "la espera",
+    "it": "l'attesa",
+    "de": "das Warten"
+   },
+   "a_key": "sand",
+   "b_key": "waiting"
+  },
+  {
+   "id": "p12",
+   "set": "open",
+   "level": "ca",
+   "a": {
+    "en": "a cup",
+    "fr": "une tasse",
+    "es": "una taza",
+    "it": "una tazza",
+    "de": "eine Tasse"
+   },
+   "b": {
+    "en": "silence",
+    "fr": "le silence",
+    "es": "el silencio",
+    "it": "il silenzio",
+    "de": "Stille"
+   },
+   "a_key": "cup",
+   "b_key": "silence"
+  },
+  {
+   "id": "p13",
+   "set": "open",
+   "level": "ca",
+   "a": {
+    "en": "a bird",
+    "fr": "un oiseau",
+    "es": "un pájaro",
+    "it": "un uccello",
+    "de": "ein Vogel"
+   },
+   "b": {
+    "en": "the past",
+    "fr": "le passé",
+    "es": "el pasado",
+    "it": "il passato",
+    "de": "die Vergangenheit"
+   },
+   "a_key": "bird",
+   "b_key": "past"
+  },
+  {
+   "id": "p14",
+   "set": "open",
+   "level": "ca",
+   "a": {
+    "en": "a tree",
+    "fr": "un arbre",
+    "es": "un árbol",
+    "it": "un albero",
+    "de": "ein Baum"
+   },
+   "b": {
+    "en": "a journey",
+    "fr": "un voyage",
+    "es": "un viaje",
+    "it": "un viaggio",
+    "de": "eine Reise"
+   },
+   "a_key": "tree",
+   "b_key": "journey"
+  },
+  {
+   "id": "p15",
+   "set": "open",
+   "level": "ca",
+   "a": {
+    "en": "an ant",
+    "fr": "une fourmi",
+    "es": "una hormiga",
+    "it": "una formica",
+    "de": "eine Ameise"
+   },
+   "b": {
+    "en": "a promise",
+    "fr": "une promesse",
+    "es": "una promesa",
+    "it": "una promessa",
+    "de": "ein Versprechen"
+   },
+   "a_key": "ant",
+   "b_key": "promise"
+  },
+  {
+   "id": "p16",
+   "set": "open",
+   "level": "ca",
+   "a": {
+    "en": "wind",
+    "fr": "le vent",
+    "es": "el viento",
+    "it": "il vento",
+    "de": "Wind"
+   },
+   "b": {
+    "en": "childhood",
+    "fr": "l'enfance",
+    "es": "la infancia",
+    "it": "l'infanzia",
+    "de": "die Kindheit"
+   },
+   "a_key": "wind",
+   "b_key": "childhood"
+  },
+  {
+   "id": "p17",
+   "set": "open",
+   "level": "aa",
+   "a": {
+    "en": "luck",
+    "fr": "la chance",
+    "es": "la suerte",
+    "it": "la fortuna",
+    "de": "Glück"
+   },
+   "b": {
+    "en": "balance",
+    "fr": "l'équilibre",
+    "es": "el equilibrio",
+    "it": "l'equilibrio",
+    "de": "das Gleichgewicht"
+   },
+   "a_key": "luck",
+   "b_key": "balance"
+  },
+  {
+   "id": "p18",
+   "set": "open",
+   "level": "aa",
+   "a": {
+    "en": "friendship",
+    "fr": "l'amitié",
+    "es": "la amistad",
+    "it": "l'amicizia",
+    "de": "Freundschaft"
+   },
+   "b": {
+    "en": "a harvest",
+    "fr": "une récolte",
+    "es": "una cosecha",
+    "it": "un raccolto",
+    "de": "eine Ernte"
+   },
+   "a_key": "friendship",
+   "b_key": "harvest"
+  },
+  {
+   "id": "p19",
+   "set": "open",
+   "level": "aa",
+   "a": {
+    "en": "waiting",
+    "fr": "l'attente",
+    "es": "la espera",
+    "it": "l'attesa",
+    "de": "das Warten"
+   },
+   "b": {
+    "en": "an echo",
+    "fr": "un écho",
+    "es": "un eco",
+    "it": "un'eco",
+    "de": "ein Echo"
+   },
+   "a_key": "waiting",
+   "b_key": "echo"
+  },
+  {
+   "id": "p20",
+   "set": "open",
+   "level": "aa",
+   "a": {
+    "en": "the past",
+    "fr": "le passé",
+    "es": "el pasado",
+    "it": "il passato",
+    "de": "die Vergangenheit"
+   },
+   "b": {
+    "en": "silence",
+    "fr": "le silence",
+    "es": "el silencio",
+    "it": "il silenzio",
+    "de": "Stille"
+   },
+   "a_key": "past",
+   "b_key": "silence"
+  },
+  {
+   "id": "p21",
+   "set": "open",
+   "level": "aa",
+   "a": {
+    "en": "childhood",
+    "fr": "l'enfance",
+    "es": "la infancia",
+    "it": "l'infanzia",
+    "de": "die Kindheit"
+   },
+   "b": {
+    "en": "a promise",
+    "fr": "une promesse",
+    "es": "una promesa",
+    "it": "una promessa",
+    "de": "ein Versprechen"
+   },
+   "a_key": "childhood",
+   "b_key": "promise"
+  },
+  {
+   "id": "p22",
+   "set": "open",
+   "level": "aa",
+   "a": {
+    "en": "memory",
+    "fr": "la mémoire",
+    "es": "la memoria",
+    "it": "la memoria",
+    "de": "die Erinnerung"
+   },
+   "b": {
+    "en": "a journey",
+    "fr": "un voyage",
+    "es": "un viaje",
+    "it": "un viaggio",
+    "de": "eine Reise"
+   },
+   "a_key": "memory",
+   "b_key": "journey"
+  },
+  {
+   "id": "p23",
+   "set": "open",
+   "level": "aa",
+   "a": {
+    "en": "trust",
+    "fr": "la confiance",
+    "es": "la confianza",
+    "it": "la fiducia",
+    "de": "Vertrauen"
+   },
+   "b": {
+    "en": "a shadow",
+    "fr": "une ombre",
+    "es": "una sombra",
+    "it": "un'ombra",
+    "de": "ein Schatten"
+   },
+   "a_key": "trust",
+   "b_key": "shadow"
+  },
+  {
+   "id": "p24",
+   "set": "open",
+   "level": "aa",
+   "a": {
+    "en": "a shadow",
+    "fr": "une ombre",
+    "es": "una sombra",
+    "it": "un'ombra",
+    "de": "ein Schatten"
+   },
+   "b": {
+    "en": "friendship",
+    "fr": "l'amitié",
+    "es": "la amistad",
+    "it": "l'amicizia",
+    "de": "Freundschaft"
+   },
+   "a_key": "shadow",
+   "b_key": "friendship"
+  }
+ ],
+ "instructions_versions": {
+  "v1": {
+   "until": "2026-11-14T00:30+01:00",
+   "welcome": {
+    "en": "You will see two ideas. Write how you would get from one to the other. Short or long, any way you like. There is no wrong answer.",
+    "fr": "Vous verrez deux idées. Écrivez comment vous iriez de l'une à l'autre. Court ou long, comme vous voulez. Il n'y a pas de mauvaise réponse.",
+    "es": "Verás dos ideas. Escribe cómo irías de una a la otra. Corto o largo, como quieras. No hay respuestas incorrectas.",
+    "it": "Vedrai due idee. Scrivi come andresti dall'una all'altra. Breve o lungo, come preferisci. Non ci sono risposte sbagliate.",
+    "de": "Du siehst zwei Ideen. Schreib, wie du von der einen zur anderen kommst. Kurz oder lang, ganz wie du willst. Es gibt keine falsche Antwort."
+   }
+  },
+  "v2": {
+   "from": "2026-11-14T00:30+01:00",
+   "welcome": {
+    "en": "You will see two ideas. Write how you would get from one to the other. Any connection works, short or long. There is no wrong answer.",
+    "fr": "Vous verrez deux idées. Écrivez comment vous iriez de l'une à l'autre. Tout lien fonctionne, court ou long. Il n'y a pas de mauvaise réponse.",
+    "es": "Verás dos ideas. Escribe cómo irías de una a la otra. Cualquier conexión vale, corta o larga. No hay respuestas incorrectas.",
+    "it": "Vedrai due idee. Scrivi come andresti dall'una all'altra. Qualsiasi collegamento va bene, breve o lungo. Non ci sono risposte sbagliate.",
+    "de": "Du siehst zwei Ideen. Schreib, wie du von der einen zur anderen kommst. Jede Verbindung zählt, kurz oder lang. Es gibt keine falsche Antwort."
+   }
+  }
+ }
+}
