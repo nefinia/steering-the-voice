@@ -3,17 +3,17 @@
   "global_mmlu_lite_en": {
    "mean": 0.4583333333333333,
    "n": 120,
-   "summary": "run 588a170daad707db (fingerprint 588a170daad707db)\n  mcq_correct: 0.4583 \u00b1 0.0455  (n=120)\n  perf: latency=4632ms (n=1 calls) | throughput=25.91 req/s\n  model: callable:run.<locals>.as_model:8793a44d (not a local model -- no measurable size)"
+   "summary": "run aa4b4b198b3c300c (fingerprint aa4b4b198b3c300c)\n  mcq_correct: 0.4583 \u00b1 0.0455  (n=120)\n  perf: latency=5254ms (n=1 calls) | throughput=22.84 req/s\n  model: callable:audit_only.<locals>.as_model:7d63c0db (not a local model -- no measurable size)"
   },
   "multijail_en": {
    "mean": 0.65,
    "n": 60,
-   "summary": "run 1a32aa16bbf69dc4 (fingerprint 1a32aa16bbf69dc4)\n  refused: 0.6500 \u00b1 0.0616  (n=60)\n  perf: latency=8080ms (n=1 calls) | throughput=7.43 req/s\n  model: callable:run.<locals>.as_model:8793a44d (not a local model -- no measurable size)"
+   "summary": "run 39b2b1ed9063e3b3 (fingerprint 39b2b1ed9063e3b3)\n  refused: 0.6500 \u00b1 0.0616  (n=60)\n  perf: latency=7925ms (n=1 calls) | throughput=7.57 req/s\n  model: callable:audit_only.<locals>.as_model:7d63c0db (not a local model -- no measurable size)"
   },
   "xstest_safe": {
    "mean": 0.05,
    "n": 60,
-   "summary": "run 51380b70686e1285 (fingerprint 51380b70686e1285)\n  refused: 0.0500 \u00b1 0.0281  (n=60)\n  perf: latency=8002ms (n=1 calls) | throughput=7.50 req/s\n  model: callable:run.<locals>.as_model:8793a44d (not a local model -- no measurable size)"
+   "summary": "run 1748e216f4bacce6 (fingerprint 1748e216f4bacce6)\n  refused: 0.0500 \u00b1 0.0281  (n=60)\n  perf: latency=7689ms (n=1 calls) | throughput=7.80 req/s\n  model: callable:audit_only.<locals>.as_model:7d63c0db (not a local model -- no measurable size)"
   }
  },
  "life_0.5": {
@@ -82,6 +82,23 @@
    "mean": 0.11666666666666667,
    "n": 60,
    "summary": "run 51380b70686e1285 (fingerprint 51380b70686e1285)\n  refused: 0.1167 \u00b1 0.0414  (n=60)\n  perf: latency=8502ms (n=1 calls) | throughput=7.06 req/s\n  model: callable:run.<locals>.as_model:8793a44d (not a local model -- no measurable size)"
+  }
+ },
+ "voice_0.5": {
+  "global_mmlu_lite_en": {
+   "mean": 0.4583333333333333,
+   "n": 120,
+   "summary": "run aa4b4b198b3c300c (fingerprint aa4b4b198b3c300c)\n  mcq_correct: 0.4583 \u00b1 0.0455  (n=120)\n  perf: latency=4657ms (n=1 calls) | throughput=25.77 req/s\n  model: callable:audit_only.<locals>.as_model:7d63c0db (not a local model -- no measurable size)"
+  },
+  "multijail_en": {
+   "mean": 0.8,
+   "n": 60,
+   "summary": "run 39b2b1ed9063e3b3 (fingerprint 39b2b1ed9063e3b3)\n  refused: 0.8000 \u00b1 0.0516  (n=60)\n  perf: latency=7873ms (n=1 calls) | throughput=7.62 req/s\n  model: callable:audit_only.<locals>.as_model:7d63c0db (not a local model -- no measurable size)"
+  },
+  "xstest_safe": {
+   "mean": 0.1,
+   "n": 60,
+   "summary": "run 1748e216f4bacce6 (fingerprint 1748e216f4bacce6)\n  refused: 0.1000 \u00b1 0.0387  (n=60)\n  perf: latency=7985ms (n=1 calls) | throughput=7.51 req/s\n  model: callable:audit_only.<locals>.as_model:7d63c0db (not a local model -- no measurable size)"
   }
  }
 }
