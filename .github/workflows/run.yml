@@ -1,11 +1,16 @@
-# Runs the steering experiment on Modal and brings the answers back into results/.
+# Runs the steering experiment on Modal and brings the answers into results/, or publishes on Hugging Face.
 # Start it from the Actions tab (Run workflow).
-# Needs two repository secrets: MODAL_TOKEN_ID and MODAL_TOKEN_SECRET (a Modal API token).
+# Needs three repository secrets: MODAL_TOKEN_ID and MODAL_TOKEN_SECRET (a Modal API token), and HF_TOKEN
+# (a Hugging Face token with write rights, from an account that accepted the Tiny Aya licence).
 
 name: run
 
 on:
   workflow_dispatch:
+    inputs:
+      step:
+        description: "run (steer on Modal) or upload (publish on Hugging Face)"
+        default: run
 
 permissions:
   contents: write
@@ -13,22 +18,27 @@ permissions:
 jobs:
   steer:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 150
     env:
       MODAL_TOKEN_ID: ${{ secrets.MODAL_TOKEN_ID }}
       MODAL_TOKEN_SECRET: ${{ secrets.MODAL_TOKEN_SECRET }}
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install modal
-      - run: modal run steer_modal.py
-      - name: Bring the answers into the repo
+      - run: pip install modal huggingface_hub
+      - if: inputs.step == 'run'
+        run: modal run steer_modal.py
+      - if: inputs.step == 'run'
+        name: Bring the answers into the repo
         run: |
-          modal volume get steering-results / results --force
+          modal volume get steering-results aya results --force
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
           git add results
-          git commit -m "Steered answers" || echo "nothing new"
+          git commit -m "Tiny Aya: steered answers, vectors and AuditKIT checks" || echo "nothing new"
           git pull --rebase && git push
+      - if: inputs.step == 'upload'
+        run: python upload_hf.py
