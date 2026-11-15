@@ -15,7 +15,7 @@ This project asks whether the same can be done inside the model, with no prompt 
 
 The answers are measured against the human map with the Bridges measures, which use no model as judge: recall (how much of the human map the answers reach), precision (how many answers land on it), and how much the voice repeats its sentence patterns. AuditKIT checks what should not get worse on the plain and steered model: general knowledge (Global-MMLU-Lite), refusal of harmful requests (MultiJail) and over-refusal of safe requests (XSTest).
 
-Chat training narrows Tiny Aya as it does other models: recall falls from 0.76 for the base model to 0.64 for the chat model, and the voice becomes more repetitive. The voice vector moves the chat model back. At strength 0.25, recall rises to 0.72 with precision unchanged (0.73) and a more varied voice, while general knowledge (0.45 against 0.46) and refusal of harmful requests (0.70 against 0.65) hold. At 0.5, recall reaches 0.81, the level of people, with precision 0.67, slightly above what the ordinary-life prompt gives (recall 0.77, precision 0.61). At 1, the answers drift and both measures fall.
+Chat training narrows Tiny Aya as it does other models: recall falls from 0.76 for the base model to 0.64 for the chat model, and the voice becomes more repetitive. The voice vector moves the chat model back. At strength 0.25, recall rises to 0.72 with precision unchanged (0.73) and a more varied voice, while general knowledge (0.45 against 0.46) and refusal of harmful requests (0.70 against 0.65) hold. At 0.5, recall reaches 0.81, the level of people, with precision 0.67, slightly above what the ordinary-life prompt gives (recall 0.77, precision 0.61); general knowledge is unchanged (0.46), refusal of harmful requests rises to 0.80, and over-refusal rises a little (0.05 to 0.10). At 1, the answers drift and both measures fall.
 
 The life vector does not work this way. Even at the lowest strength it pushes the model into a caricature of "ordinary" speech, a thick invented dialect, and at higher strengths into repeated syllables, with recall near zero and every check failing. A direction built from who is speaking carries the model's stereotypes of those people; a direction built from how the model's own answers change carries the change in ideas. Steering for diversity has to be read against real people, because the model's idea of an ordinary person is itself narrow.
 
@@ -111,11 +111,38 @@ The ideas are measured on content words only, with the scaffolding and the two w
 
 ## Results
 
-{{RESULTS}}
+### Same model before and after
+
+Tiny Aya Global, six core Bridges pairs in both directions, 120 answers per condition; recall and precision on the human map of ideas (mean over 3 measurement seeds, spread under 0.05); voice is the compression ratio of parts of speech (lower is more varied; people 4.1). AuditKIT checks are greedy, on 120 Global-MMLU-Lite questions, 60 MultiJail and 60 XSTest safe prompts, all in English.
+
+| Condition | Recall ↑ | Precision ↑ | Voice ↓ | Global-MMLU-Lite ↑ | Refuses harmful ↑ | Refuses safe ↓ |
+|---|---|---|---|---|---|---|
+| Tiny Aya Base (before chat training) | 0.76 | 0.72 | 4.1 | | | |
+| Tiny Aya Global, plain | 0.64 | 0.72 | 4.7 | 0.46 | 0.65 | 0.05 |
+| Global, ordinary-life prompt | 0.77 | 0.61 | 4.6 | | | |
+| **Global, voice vector 0.25** | **0.72** | **0.73** | 4.5 | 0.45 | 0.70 | 0.07 |
+| **Global, voice vector 0.5** | **0.81** | 0.67 | 4.3 | 0.46 | 0.80 | 0.10 |
+| Global, voice vector 1 | 0.64 | 0.57 | 4.3 | 0.39 | 0.83 | 0.12 |
+| Global, life vector 0.25 | 0.21 | 0.46 | 4.6 | | | |
+| Global, life vector 0.5 | 0.03 | 0.27 | 7.3 | 0.00 | 0.00 | 0.00 |
+| Global, life vector 1 | 0.01 | 0.37 | 8.0 | 0.00 | 0.00 | 0.00 |
+| People (half against half) | 0.81 | 0.82 | 4.1 | | | |
+
+Full numbers: `results/aya/measures.csv` and `results/aya/auditkit.json`.
+
+### Findings
+
+**Chat training narrows Tiny Aya.** The chat model reaches less of the human map than its own base model (0.64 against 0.76), with a more repetitive voice, as Qwen2.5 did in Epistemic Bridges.
+
+**The voice vector widens the ideas with no prompt.** At 0.25 recall rises by 8 points with precision unchanged. At 0.5 recall reaches the level of people, and the model does slightly better on both measures than when it is prompted with an ordinary life. The voice moves toward people at the same time.
+
+**Knowledge and safety hold at the useful strengths.** At 0.25 and 0.5, Global-MMLU-Lite stays at 0.45 to 0.46, and refusal of harmful requests rises (0.65 to 0.70 and 0.80). The cost is a little more over-refusal at 0.5 (3 more of 60 safe prompts refused). At 1, knowledge starts to fall.
+
+**A small model's idea of an ordinary person is a stereotype.** See below.
 
 ### What didn't work
 
-{{NEGATIVE}}
+The life vector, taken from the prompt with and without an ordinary life, did not widen anything. At 0.25 the model answered in a thick, invented "ordinary" dialect ("back home they made me do all this… you know like, ahhh…"), and from 0.5 it produced repeated syllables, failing every AuditKIT check. The prompt itself works (recall 0.77), so the problem is in the direction: what separates "an ordinary person is speaking" from "the assistant is speaking" in the model's activations is mostly a register, and pushing along it brings out the model's stereotype of such a person, not their ideas. The voice vector, built from how the model's own answers change, carries the ideas instead. In a pilot on Qwen2.5-7B-Instruct, the life vector did widen the ideas at 0.5 (recall 0.61 to 0.70, with precision falling to 0.65) before breaking at 1, so how far this direction carries ideas or caricature depends on the model. Steering for diversity needs to be checked against real people, since the model's picture of who counts as different is itself narrow.
 
 ### Compute used
 
