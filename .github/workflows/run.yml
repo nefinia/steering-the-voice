@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       step:
-        description: "run (steer on Modal) or upload (publish on Hugging Face)"
+        description: "run (steer on Modal), audit (AuditKIT on more conditions) or upload (publish on Hugging Face)"
         default: run
 
 permissions:
@@ -31,7 +31,9 @@ jobs:
       - run: pip install modal huggingface_hub
       - if: inputs.step == 'run'
         run: modal run steer_modal.py
-      - if: inputs.step == 'run'
+      - if: inputs.step == 'audit'
+        run: modal run steer_modal.py --audit none,voice_0.5
+      - if: inputs.step == 'run' || inputs.step == 'audit'
         name: Bring the answers into the repo
         run: |
           modal volume get steering-results aya results --force

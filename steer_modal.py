@@ -248,6 +248,75 @@ def _per_sample(res):
     raise ValueError(f"no per-sample scores found on {type(res).__name__}: {[a for a in dir(res) if not a.startswith('_')]}")
 
 
+@app.function(image=image, gpu="L40S", timeout=60 * 60, secrets=[modal.Secret.from_local_environ(["HF_TOKEN"])],
+              volumes={"/results": results, "/root/.cache/huggingface": hf_cache})
+def audit_only(conds: str = "none,voice_0.5", audit_n: int = 60) -> str:
+    """AuditKIT checks for extra conditions, with the vectors saved by run()."""
+    import torch
+    from transformers import AutoModelForCausalLM, AutoTokenizer
+    from safetune.interventions.steer import CAAModel
+    import auditkit as ak
+    from auditkit.benchmark_loaders import GLOBAL_MMLU_LITE, load_global_mmlu, load_multijail, load_xstest
+    from auditkit.metrics.refusal import find_refusal
+
+    out_dir = Path("/results/aya")
+    vecs = torch.load(out_dir / "steering_vectors.pt")
+    tok = AutoTokenizer.from_pretrained(CHAT)
+    tok.padding_side = "left"
+    model = AutoModelForCausalLM.from_pretrained(CHAT, torch_dtype=torch.bfloat16, device_map="cuda").eval()
+    vecs = {k: {l: v.to("cuda", dtype=torch.bfloat16) for l, v in d.items()} for k, d in vecs.items()}
+
+    def chat(user):
+        return tok.apply_chat_template([{"role": "user", "content": user}], tokenize=False, add_generation_prompt=True)
+
+    def gen(m, prompts, max_new_tokens):
+        out = []
+        for i in range(0, len(prompts), 32):
+            enc = tok(prompts[i:i + 32], return_tensors="pt", padding=True, add_special_tokens=False).to("cuda")
+            with torch.no_grad():
+                g = m.generate(**enc, do_sample=False, max_new_tokens=max_new_tokens, pad_token_id=tok.pad_token_id)
+            out += tok.batch_decode(g[:, enc["input_ids"].shape[1]:], skip_special_tokens=True)
+        return out
+
+    sets = {"global_mmlu_lite_en": load_global_mmlu("en", repo=GLOBAL_MMLU_LITE, limit=audit_n * 2),
+            "multijail_en": load_multijail("en", limit=audit_n),
+            "xstest_safe": [s for s in load_xstest() if "safe" in s.tags][:audit_n]}
+
+    @ak.scorer(direction=ak.Direction.MAXIMIZE)
+    def mcq_correct(sample, output):
+        m = re.search(r"\d", output or "")
+        return 1.0 if m and int(m.group()) == sample.target else 0.0
+
+    @ak.scorer(direction=ak.Direction.MAXIMIZE)
+    def refused(sample, output):
+        return 1.0 if find_refusal(output or "", "en") else 0.0
+
+    path = out_dir / "auditkit.json"
+    audit = json.loads(path.read_text()) if path.exists() else {}
+    for cond in conds.split(","):
+        if cond == "none":
+            m = model
+        else:
+            name, s = cond.rsplit("_", 1)
+            m = CAAModel(model, vecs[name], strength=float(s))
+
+        def as_model(prompts, m=m):
+            short = all(p.rstrip().endswith("Answer:") for p in prompts)
+            return gen(m, [chat(p) for p in prompts], 6 if short else 96)
+
+        audit[cond] = {}
+        for name, samples in sets.items():
+            res = ak.evaluate(samples, as_model, [mcq_correct] if name.startswith("global") else [refused],
+                              adapter="mcq" if name.startswith("global") else None, cache=False)
+            scores = [float(v) for v in _per_sample(res)]
+            audit[cond][name] = {"mean": sum(scores) / max(len(scores), 1), "n": len(scores),
+                                 "summary": str(res.summary())[:2000]}
+            print(cond, name, audit[cond][name]["mean"])
+    path.write_text(json.dumps(audit, indent=1))
+    results.commit()
+    return "audit written"
+
+
 @app.local_entrypoint()
-def main(n: int = 10, audit_n: int = 60):
-    print(run.remote(n, audit_n))
+def main(n: int = 10, audit_n: int = 60, audit: str = ""):
+    print(audit_only.remote(audit, audit_n) if audit else run.remote(n, audit_n))
