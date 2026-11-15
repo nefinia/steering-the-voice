@@ -1,6 +1,6 @@
 # Steering the voice
 
-Chat training gives language models one shared assistant voice. In [Epistemic Bridges](https://github.com/nefinia/epistemic-bridges), people and models linked the same pairs of simple ideas, such as a bee and a mirror, and most of what made chat answers look narrow against the human answers was that voice. Asking a model to answer as an ordinary person drawn at random, such as a fisherwoman in Chile, widened its ideas on every model.
+Chat training gives language models one shared assistant voice. In [Epistemic Bridges](https://github.com/nefinia/epistemic-bridges), people and models linked the same pairs of simple ideas, such as a bee and a mirror, and most of what made chat answers look narrow against the human answers was that voice. Asking a model to answer as an ordinary person drawn at random widened its ideas on every model.
 
 This repository asks whether the same can be done inside the model, with no prompt: find the direction of the assistant voice in the model's activations and steer it, then measure the answers against the map that real people drew.
 
