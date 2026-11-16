@@ -27,7 +27,7 @@ The life vector fails in a revealing way. Even at the lowest strength it pushes 
 
 ## For judges: one minute
 
-- Chat models answer in one shared assistant voice. In [Epistemic Bridges](https://github.com/nefinia/epistemic-bridges), people and 15 open models linked the same pairs of words, and chat models reached less of the space of ideas people reached, even with that voice removed.
+- Chat models answer in one shared assistant voice. In [Epistemic Bridges](https://apartresearch.com/sprints/projects/epistemic-bridges-do-language-models-reach-the-connections-people-make-y0xuxrgxw8), an earlier study by the author,, people and 15 open models linked the same pairs of words, and chat models reached less of the space of ideas people reached, even with that voice removed.
 - Asking a model to answer as an ordinary person drawn at random was the one prompt that widened its ideas on every model.
 - Here that perspective is turned into a direction in Tiny Aya's activations with SafeTune, and added at inference with no system prompt.
 - The answers are read against the map of ideas drawn by real players (recall and precision), and AuditKIT checks that general knowledge and safety hold.
@@ -183,7 +183,7 @@ The measures use the analysis code of [Epistemic Bridges](https://github.com/nef
 
 ## Declaration of work done outside the hackathon
 
-The Bridges game, its pairs and the player answers come from Epistemic Bridges, made for the Apart Research AI x Epistemics sprint (13 to 16 November 2026), and the measures are its analysis code. The steering, the Tiny Aya runs, the use of SafeTune and AuditKIT, and this write-up were made for this hackathon. A first steering pilot on Qwen2.5-7B-Instruct was also made during the hackathon, before the switch to Aya.
+The Bridges game, its pairs and the player answers come from [Epistemic Bridges](https://apartresearch.com/sprints/projects/epistemic-bridges-do-language-models-reach-the-connections-people-make-y0xuxrgxw8), made for the Apart Research AI x Epistemics sprint (13 to 16 November 2026), and the measures are its analysis code. The steering, the Tiny Aya runs, the use of SafeTune and AuditKIT, and this write-up were made for this hackathon. A first steering pilot on Qwen2.5-7B-Instruct was also made during the hackathon, before the switch to Aya.
 
 ## Teammates
 
